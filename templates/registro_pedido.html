@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Pedido</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">Formulario de Registro de Pedido</h1>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="usuario_id">Usuario</label>
+                <select class="form-control" id="usuario_id" name="usuario_id">
+                    {% for usuario in usuarios %}
+                    <option value="{{ usuario[0] }}">{{ usuario[1] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="producto">Producto</label>
+                <input type="text" class="form-control" id="producto" name="producto" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="date" class="form-control" id="fecha" name="fecha" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar Pedido</button>
+        </form>
+
+        <!-- Botón para regresar a la página principal -->
+        <div class="text-center mt-3">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Regresar a la Página Principal</a>
+        </div>
+    </div>
+</body>
+</html>

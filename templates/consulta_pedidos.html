@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Pedidos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function confirmarAccion(mensaje) {
+            return confirm(mensaje);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">Lista de Pedidos</h1>
+
+        <!-- Tabla de pedidos -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID Pedido</th>
+                    <th>Usuario</th>
+                    <th>Producto</th>
+                    <th>Fecha</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pedido in pedidos %}
+                <tr>
+                    <td>{{ pedido[0] }}</td>
+                    <td>{{ pedido[1] }}</td>
+                    <td>{{ pedido[2] }}</td>
+                    <td>{{ pedido[3] }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_pedido', id=pedido[0]) }}" 
+                           class="btn btn-warning btn-sm"
+                           onclick="return confirmarAccion('¿Estás seguro de que deseas modificar este pedido?');">
+                           Modificar
+                        </a>
+                        <a href="{{ url_for('eliminar_pedido', id=pedido[0]) }}" 
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirmarAccion('¿Estás seguro de que deseas eliminar este pedido?');">
+                           Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Botón para regresar a la página principal -->
+        <div class="text-center mt-3">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Regresar a la Página Principal</a>
+        </div>
+    </div>
+</body>
+</html>
+

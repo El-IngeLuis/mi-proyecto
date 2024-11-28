@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Usuarios</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script>
+        function confirmarAccion(mensaje) {
+            return confirm(mensaje);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">Lista de Usuarios</h1>
+
+        <!-- Tabla de usuarios -->
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Edad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td>{{ usuario[0] }}</td>
+                    <td>{{ usuario[1] }}</td>
+                    <td>{{ usuario[2] }}</td>
+                    <td>{{ usuario[3] }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_usuario', id=usuario[0]) }}" 
+                           class="btn btn-warning btn-sm"
+                           onclick="return confirmarAccion('¿Estás seguro de que deseas modificar este usuario?');">
+                           Modificar
+                        </a>
+                        <a href="{{ url_for('eliminar_usuario', id=usuario[0]) }}" 
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirmarAccion('¿Estás seguro de que deseas eliminar este usuario?');">
+                           Eliminar
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Botón para regresar a la página principal -->
+        <div class="text-center mt-3">
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Regresar a la Página Principal</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">Bienvenido a la Aplicación</h1>
+        
+        <!-- Botones para navegar a otras secciones -->
+        <div class="text-center">
+            <a href="{{ url_for('registro_usuario') }}" class="btn btn-primary btn-lg mb-3">Registrar Usuario</a><br>
+            <a href="{{ url_for('consulta_usuarios') }}" class="btn btn-secondary btn-lg mb-3">Consultar Usuarios</a><br>
+            <a href="{{ url_for('registro_pedido') }}" class="btn btn-info btn-lg mb-3">Registrar Pedido</a><br>
+            <a href="{{ url_for('consulta_pedidos') }}" class="btn btn-warning btn-lg mb-3">Consultar Pedidos</a><br>
+        </div>
+    </div>
+</body>
+</html>
+

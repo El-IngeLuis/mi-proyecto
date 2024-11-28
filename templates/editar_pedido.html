@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Pedido</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">Editar Pedido</h1>
+        
+        <!-- Formulario para editar un pedido -->
+        <form action="{{ url_for('editar_pedido', id=pedido[0]) }}" method="post">
+            <div class="form-group">
+                <label for="usuario_id">Usuario</label>
+                <select class="form-control" id="usuario_id" name="usuario_id" required>
+                    {% for usuario in usuarios %}
+                    <option value="{{ usuario[0] }}" {% if usuario[0] == pedido[1] %}selected{% endif %}>
+                        {{ usuario[1] }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="producto">Producto</label>
+                <input type="text" class="form-control" id="producto" name="producto" value="{{ pedido[2] }}" required>
+            </div>
+            <div class="form-group">
+                <label for="fecha">Fecha</label>
+                <input type="date" class="form-control" id="fecha" name="fecha" value="{{ pedido[3] }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a href="{{ url_for('consulta_pedidos') }}" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+</body>
+</html>
